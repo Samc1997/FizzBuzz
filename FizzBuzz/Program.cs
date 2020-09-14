@@ -9,9 +9,17 @@ namespace FizzBuzz
         static void Main(string[] args)
         {
             var newCounter = new NumberReplacerCounter();
-            // Without an output
-            var test = newCounter.Count(100);
-            newCounter.Count(100, new FileOutput());
+            newCounter.Count(100, new ConsoleOutput());
+
+            /*
+            var pairs = new List<(int, string)>()
+            {
+                (7, "Seven"),
+                (5, "Five"),
+                (6, "Six")
+            };
+            newCounter.Count(pairs, 50, new FileOutput()); 
+            */
         }
     }
 }

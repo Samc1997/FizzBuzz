@@ -41,10 +41,8 @@ namespace FizzBuzz.CountingGames
             {
                 sb.Append(i + Environment.NewLine);
             }
-
             // Pass the string to the given output class
             OutputCountString(sb.ToString(), output);
-
             return sb.ToString();
         }
     }
@@ -52,7 +50,6 @@ namespace FizzBuzz.CountingGames
     // Counter game that replaces numbers with strings 
     public class NumberReplacerCounter : Counter
     {
-        // Local internal class instead of tuple?
         private List<(int, string)> defaultPairs = new List<(int, string)>()
         {           
             (3, "Fizz"),
@@ -63,7 +60,7 @@ namespace FizzBuzz.CountingGames
         public override string Count(int range, IOutput output = null) => Count(defaultPairs, range, output);
 
         // Specify numbers to match with a phrase 
-        // Returns string of outputs between the specified range   // pass output interface? = any class that implements ouput functionality. Default to consolelog?
+        // Returns string of outputs between the specified range  
         public string Count(List<(int, string)> pairs, int range, IOutput output = null)
         {
             var sb = new StringBuilder();
@@ -80,19 +77,17 @@ namespace FizzBuzz.CountingGames
                     }
                 }
                 // If no phrases matched, add number
-                if (!matchFound)
-                {
-                    sb.Append(i.ToString());
-                }
+                if (!matchFound) sb.Append(i.ToString());
+              
                 sb.Append(Environment.NewLine);
             }
             // Pass the string to the given output class
             OutputCountString(sb.ToString(), output);
-
             return sb.ToString();
         }
     }
 
+   // Interface that enforces the output of an input string
     public interface IOutput
     {
         public void ProcessString(string stringToProcess);
@@ -111,11 +106,20 @@ namespace FizzBuzz.CountingGames
     public class FileOutput : IOutput
     {
         // Default to current directory 
-        private readonly string defaultPath =  @"mynewfile.txt";
+        private string filePath =  @"mynewfile.txt";
 
-        public void ProcessString(string stringToProcess) => ProcessString(stringToProcess, defaultPath);
+        // Provide empty constructor with no file path specified
+        public FileOutput()
+        {
+        }
 
-        public void ProcessString(string stringToProcess, string filePath) 
+        // Specify file path
+        public FileOutput(string filePath)
+        {
+            this.filePath = filePath;
+        }
+
+        public void ProcessString(string stringToProcess) 
         {
             // Creates the file and writes the string to the file
             File.WriteAllText(filePath, stringToProcess);
