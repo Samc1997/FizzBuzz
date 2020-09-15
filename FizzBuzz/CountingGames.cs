@@ -6,7 +6,6 @@ using System.IO;
 
 namespace FizzBuzz.CountingGames
 {
-    // Counting interface
     interface ICounter 
     {
        // Count between the given range and optionally output the count string
@@ -18,7 +17,8 @@ namespace FizzBuzz.CountingGames
     {
         public abstract string Count(int range, IOutput output = null);
 
-        // Takes an input string and passes it to a class that implements the output interface
+        // Takes an input string, performs validation checks and passes 
+        // it to an object that implements the output interface
         protected void OutputCountString(string countString, IOutput output)
         {
             // Return if no output specified
