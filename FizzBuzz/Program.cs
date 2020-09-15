@@ -11,6 +11,8 @@ namespace FizzBuzz
             var newCounter = new NumberReplacerCounter();
             newCounter.Count(100, new ConsoleOutput());
 
+            var basicCounter = new BasicCounter();
+            basicCounter.Count(50, new ConsoleOutput());
             /*
             var pairs = new List<(int, string)>()
             {
